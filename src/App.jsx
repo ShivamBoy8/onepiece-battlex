@@ -16,70 +16,68 @@ export default function App() {
   const [computerTeam, setComputerTeam]     = useState([]);
   const [gameOver, setGameOver]             = useState(false);
 
-  // ── refs so applyRoomEffect always sees fresh team values ──
+  // ── useRef fix: always fresh team values for room effect ──
   const humanTeamRef    = useRef(humanTeam);
   const computerTeamRef = useRef(computerTeam);
 
   useEffect(() => { humanTeamRef.current    = humanTeam;    }, [humanTeam]);
   useEffect(() => { computerTeamRef.current = computerTeam; }, [computerTeam]);
 
-  // ── used card ids to prevent duplicates ──
+  // ── used card ids ──
   const usedCardIds = [
     ...humanTeam.map(card => card.id),
     ...computerTeam.map(card => card.id),
   ];
 
-  // ── fresh score from team array — bonus is baked into totalPower ──
-  const calcTeamScore = (team) =>
-    team.reduce((sum, card) => sum + (card.totalPower || 0), 0);
-
-  // ── room effect: swap weakest in myTeam with random in enemyTeam ──
+  // ── room effect ──
   const applyRoomEffect = (myTeam, enemyTeam, isHumanTurn) => {
     if (myTeam.length === 0 || enemyTeam.length === 0) return;
 
-    // find weakest card in my team by totalPower
+    // find weakest card in my team
     let weakestIndex = 0;
     for (let i = 1; i < myTeam.length; i++) {
-      if ((myTeam[i].totalPower || 0) < (myTeam[weakestIndex].totalPower || 0)) {
+      if (myTeam[i].totalPower < myTeam[weakestIndex].totalPower) {
         weakestIndex = i;
       }
     }
 
+    // pick random opponent card
     const randomEnemyIndex = Math.floor(Math.random() * enemyTeam.length);
+    const weakestCard = myTeam[weakestIndex];
+    const enemyCard   = enemyTeam[randomEnemyIndex];
 
-    // copy both arrays
+    // swap cards
     const newMyTeam    = [...myTeam];
     const newEnemyTeam = [...enemyTeam];
+    newMyTeam[weakestIndex]        = enemyCard;
+    newEnemyTeam[randomEnemyIndex] = weakestCard;
 
-    // swap using temp
-    const temp                     = newMyTeam[weakestIndex];
-    newMyTeam[weakestIndex]        = newEnemyTeam[randomEnemyIndex];
-    newEnemyTeam[randomEnemyIndex] = temp;
+    // score change using delta (clean approach)
+    const myDelta    = enemyCard.totalPower - weakestCard.totalPower;
+    const enemyDelta = weakestCard.totalPower - enemyCard.totalPower;
 
     if (isHumanTurn) {
       setHumanTeam(newMyTeam);
       setComputerTeam(newEnemyTeam);
-      // recalc scores fresh — bonus already baked into each card's totalPower
-      setHumanScore(calcTeamScore(newMyTeam));
-      setComputerScore(calcTeamScore(newEnemyTeam));
+      setHumanScore(prev    => prev + myDelta);
+      setComputerScore(prev => prev + enemyDelta);
     } else {
       setComputerTeam(newMyTeam);
       setHumanTeam(newEnemyTeam);
-      setComputerScore(calcTeamScore(newMyTeam));
-      setHumanScore(calcTeamScore(newEnemyTeam));
+      setComputerScore(prev => prev + myDelta);
+      setHumanScore(prev    => prev + enemyDelta);
     }
   };
 
-  // ── main card select handler ──
+  // ── card select handler ──
   const handleCardSelect = (selectedCard, isHumanTurn) => {
-    const baseScore = selectedCard.totalPower || 0;
-    const team      = isHumanTurn ? humanTeam : computerTeam;
+    const scoreToAdd = selectedCard.totalPower || 0;
+    const team       = isHumanTurn ? humanTeam : computerTeam;
 
-    // ── calculate synergy bonus ──
+    // synergy bonus calculation
     let bonus = 0;
 
     if (selectedCard.type === "powerup") {
-      // powerup picked: check if any synergy character already in team
       const hasSynergy = selectedCard.synergyWith?.some(id =>
         team.some(card => card.id === id)
       );
@@ -87,7 +85,6 @@ export default function App() {
         bonus += selectedCard.synergyBonus || 0;
       }
     } else {
-      // character picked: check if any powerup already in team synergises with it
       const matchingPowerCards = team.filter(
         card =>
           card.type === "powerup" &&
@@ -98,40 +95,27 @@ export default function App() {
       });
     }
 
-    // ✅ bake bonus into the card's totalPower so calcTeamScore always sees it
-    const cardWithBonus = {
-      ...selectedCard,
-      totalPower:   baseScore + bonus,
-      bonusApplied: bonus,
-    };
-
     if (isHumanTurn) {
-      setHumanPicked(cardWithBonus);
-
-      const newHumanTeam = [...humanTeam, cardWithBonus];
+      setHumanPicked(selectedCard);
+      const newHumanTeam = [...humanTeam, selectedCard];
       setHumanTeam(newHumanTeam);
+      setHumanScore(prev => prev + scoreToAdd + bonus);
 
-      // ✅ recalc from team array — not prev + value
-      setHumanScore(calcTeamScore(newHumanTeam));
-
-      // room card: swap weakest with random enemy
       if (selectedCard.id === "pm_ope") {
+        // ✅ use ref for enemy team — never stale
         applyRoomEffect(newHumanTeam, computerTeamRef.current, true);
       }
 
       setPickTurn(false);
 
     } else {
-      setComputerPicked(cardWithBonus);
-
-      const newComputerTeam = [...computerTeam, cardWithBonus];
+      setComputerPicked(selectedCard);
+      const newComputerTeam = [...computerTeam, selectedCard];
       setComputerTeam(newComputerTeam);
+      setComputerScore(prev => prev + scoreToAdd + bonus);
 
-      // ✅ recalc from team array
-      setComputerScore(calcTeamScore(newComputerTeam));
-
-      // room card: swap weakest with random human card
       if (selectedCard.id === "pm_ope") {
+        // ✅ use ref for enemy team — never stale
         applyRoomEffect(newComputerTeam, humanTeamRef.current, false);
       }
 
@@ -154,7 +138,7 @@ export default function App() {
     }
   }, [round]);
 
-  // ── reset everything ──
+  // ── reset ──
   const resetGame = () => {
     setHumanPicked(null);
     setComputerPicked(null);
