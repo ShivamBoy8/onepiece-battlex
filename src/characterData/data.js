@@ -569,13 +569,6 @@ const POWER_CARDS = [
     synergyWith:["hancock"],  synergyBonus:35,
     synergyDesc:"+35 when Hancock is in your crew" },
 
-  { id:"pm_ope",          type:"powerup", rarity:"legendary", category:"prob_manip",
-    image:pm_ope,            name:"Ope Ope ROOM",
-    desc:"Law's massive ROOM — everything inside is his to rearrange at will.",
-    flatBonus:210,        totalPower:210,
-    synergyWith:["law"],      synergyBonus:55,
-    synergyDesc:"+55 when Law controls the ROOM" },
-
   { id:"pm_warp",         type:"powerup", rarity:"mythic",    category:"prob_manip",
     image:pm_warp,           name:"Nikyu Nikyu Teleport",
     desc:"Kuma's Paw-Paw fruit sends attacks — and enemies — flying across the world.",
@@ -593,6 +586,12 @@ const POWER_CARDS = [
     synergyWith:["nami"],     synergyBonus:35,
     synergyDesc:"+35 when Nami commands Zeus" },
 
+   { id:"pm_ope",          type:"powerup", rarity:"legendary", category:"prob_manip",
+    image:pm_ope,            name:"Ope Ope ROOM",
+    desc:"Law's massive ROOM — everything inside is his to rearrange at will.",
+    flatBonus:210,        totalPower:210,
+    synergyWith:["law"],      synergyBonus:55,
+    synergyDesc:"+55 when Law controls the ROOM" },
 
   { id:"cb_rokushiki",    type:"powerup", rarity:"rare",      category:"crew_buff",
     image:six,            name:"Six Powers Mastery",
