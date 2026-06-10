@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRoomEffect } from "./useRoomEffect";
+import { useDarknessEffect } from "./useDarknessEffect";
+
 
 export const useCardSelect = () => {
   const [humanPicked, setHumanPicked]       = useState(null);
@@ -29,6 +31,12 @@ export const useCardSelect = () => {
     setHumanScore,
     setComputerScore,
   });
+
+  const { applyDarkEffect } = useDarknessEffect({
+    setHumanScore,
+    setComputerScore,
+  });
+
 
   const handleCardSelect = (selectedCard, isHumanTurn) => {
     const scoreToAdd = selectedCard.totalPower || 0;
@@ -64,6 +72,10 @@ export const useCardSelect = () => {
         applyRoomEffect(newHumanTeam, computerTeamRef.current, true);
       }
 
+      if (selectedCard.id === "pm_darkness") {
+         applyDarkEffect(true);
+       }
+
       setPickTurn(false);
 
     } else {
@@ -75,6 +87,10 @@ export const useCardSelect = () => {
       if (selectedCard.id === "pm_ope") {
         applyRoomEffect(newComputerTeam, humanTeamRef.current, false);
       }
+
+       if (selectedCard.id === "pm_darkness") {
+         applyDarkEffect(false);
+       }
 
       const nextRound = round + 1;
       setRound(nextRound);
