@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRoomEffect } from "./useRoomEffect";
 import { useDarknessEffect } from "./useDarknessEffect";
+import { useAlliancePact } from "./useAlliancePact";
 
 
 export const useCardSelect = () => {
@@ -38,6 +39,12 @@ export const useCardSelect = () => {
   });
 
 
+  const {applyAllianceEffect} = useAlliancePact({
+  setHumanScore,
+  setComputerScore,
+  }) ;
+
+
   const handleCardSelect = (selectedCard, isHumanTurn) => {
     const scoreToAdd = selectedCard.totalPower || 0;
     const team       = isHumanTurn ? humanTeam : computerTeam;
@@ -45,22 +52,27 @@ export const useCardSelect = () => {
     let bonus = 0;
 
     if (selectedCard.type === "powerup") {
-      const hasSynergy = selectedCard.synergyWith?.some(id =>
-        team.some(card => card.id === id)
-      );
-      if (hasSynergy) {
-        bonus += selectedCard.synergyBonus || 0;
-      }
-    } else {
-      const matchingPowerCards = team.filter(
-        card =>
-          card.type === "powerup" &&
-          selectedCard.powerCard?.includes(card.id)
-      );
-      matchingPowerCards.forEach(card => {
-        bonus += card.synergyBonus || 0;
-      });
+  // Skip generic synergy for cards with custom team-count logic
+  if (!selectedCard.teamSynergyCount) {
+    const hasSynergy = selectedCard.synergyWith?.some(id =>
+      team.some(card => card.id === id)
+    );
+    if (hasSynergy) {
+      bonus += selectedCard.synergyBonus || 0;
     }
+  }
+} else {
+  // character card: check if any powerup in team boosts it
+  const matchingPowerCards = team.filter(
+    card =>
+      card.type === "powerup" &&
+      selectedCard.powerCard?.includes(card.id)
+  );
+  matchingPowerCards.forEach(card => {
+    bonus += card.synergyBonus || 0;
+  });
+}
+
 
     if (isHumanTurn) {
       setHumanPicked(selectedCard);
@@ -74,6 +86,10 @@ export const useCardSelect = () => {
 
       if (selectedCard.id === "pm_darkness") {
          applyDarkEffect(true);
+       }
+
+       if (selectedCard.id === "cs_yonko_pact") {
+       applyAllianceEffect(newHumanTeam,true,selectedCard.synergyBonus);
        }
 
       setPickTurn(false);
@@ -90,6 +106,10 @@ export const useCardSelect = () => {
 
        if (selectedCard.id === "pm_darkness") {
          applyDarkEffect(false);
+       }
+
+       if (selectedCard.id === "cs_yonko_pact") {
+       applyAllianceEffect(newComputerTeam,false,selectedCard.synergyBonus);
        }
 
       const nextRound = round + 1;
