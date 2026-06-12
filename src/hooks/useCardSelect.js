@@ -3,6 +3,7 @@ import { useRoomEffect } from "./useRoomEffect";
 import { useDarknessEffect } from "./useDarknessEffect";
 import { useAlliancePact } from "./useAlliancePact";
 import { useBrookSkip } from "./useBrooktSkip";
+import { useFrankyBeam } from "./useFrankyBeam";
 
 
 export const useCardSelect = () => {
@@ -49,6 +50,13 @@ export const useCardSelect = () => {
   setHumanScore,
   setComputerScore,
   }) ;
+
+  const { applyFrankyBeam } = useFrankyBeam({
+    setHumanTeam,
+    setComputerTeam,
+    setHumanScore,
+    setComputerScore,
+  });
   
 
 
@@ -99,6 +107,9 @@ export const useCardSelect = () => {
        applyAllianceEffect(newHumanTeam,true,selectedCard.synergyBonus);
        }
 
+       if (selectedCard.id === "rp_cola")
+        applyFrankyBeam(computerTeamRef.current, true);
+
        if(selectedCard.id=="cb_yomi"){
         applyBrookSkip(true)
        }
@@ -122,6 +133,9 @@ export const useCardSelect = () => {
        if (selectedCard.id === "cs_yonko_pact") {
        applyAllianceEffect(newComputerTeam,false,selectedCard.synergyBonus);
        }
+
+       if (selectedCard.id === "rp_cola")
+        applyFrankyBeam(humanTeamRef.current, false);
 
        if(selectedCard.id=="cb_yomi"){
         applyBrookSkip(false)

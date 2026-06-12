@@ -614,12 +614,6 @@ const POWER_CARDS = [
     synergyWith:["brook"],    synergyBonus:40,
     synergyDesc:"+40 when Brook performs for the crew" },
 
-  { id:"cb_cyborg",       type:"powerup", rarity:"rare",      category:"crew_buff",
-    image:frankycola,     name:"Franky's Laser Upgrade",
-    desc:"Franky fires a fresh-cola laser barrage, cutting clean through enemy lines.",
-    flatBonus:112,        totalPower:112,
-    synergyWith:["franky"],   synergyBonus:32,
-    synergyDesc:"+32 when Franky goes full cyborg mode" },
 
   { id:"cb_archeology",   type:"powerup", rarity:"epic",      category:"crew_buff",
     image:cb_archeology,           name:"Ancient Weapon Blueprint",
