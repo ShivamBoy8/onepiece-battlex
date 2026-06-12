@@ -4,9 +4,48 @@ import Navbar from "./components/Navbar";
 import ScoreBoard from "./components/ScoreBoard";
 import WinnerModal from "./components/WinnerModal";
 import { useCardSelect } from "./hooks/useCardSelect";
+import overtaken from "./assets/music/overtaken.mp3";
 
 export default function App() {
-const {
+
+  const bgMusic      = useRef(null);
+  const musicStarted = useRef(false);
+  const [muted, setMuted] = useState(false);
+
+  // initialise audio once
+  useEffect(() => {
+    bgMusic.current        = new Audio(overtaken);
+    bgMusic.current.loop   = true;
+    bgMusic.current.volume = 0.5;
+    return () => {
+      bgMusic.current.pause();
+      bgMusic.current = null;
+    };
+  }, []);
+
+  // start on first click
+  const startMusic = () => {
+    if (!musicStarted.current && bgMusic.current) {
+      bgMusic.current.play().catch(() => {});
+      musicStarted.current = true;
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", startMusic, { once: true });
+    return () => window.removeEventListener("click", startMusic);
+  }, []);
+
+  // mute toggle
+  const toggleMute = () => {
+    startMusic();
+    if (bgMusic.current) {
+      bgMusic.current.muted = !muted;
+      setMuted(prev => !prev);
+    }
+  };
+
+  const {
     humanScore,
     computerScore,
     pickTurn,
@@ -16,12 +55,26 @@ const {
     gameOver,
     usedCardIds,
     handleCardSelect,
-    resetGame,
-  } = useCardSelect()
+    resetGame: resetGameState,
+  } = useCardSelect();
+
+  useEffect(() => {
+    if (gameOver && bgMusic.current) {
+      bgMusic.current.pause(); 
+    }
+  }, [gameOver]);
+
+  const resetGame = () => {
+    resetGameState();
+    if (bgMusic.current) {
+      bgMusic.current.currentTime = 0;
+      bgMusic.current.play().catch(() => {}); 
+    }
+  };
 
   return (
     <div className="min-h-screen w-full bg-slate-950">
-      <Navbar />
+      <Navbar toggleMute={toggleMute} muted={muted} />
 
       <ScoreBoard
         humanTeam={humanTeam}
@@ -49,10 +102,9 @@ const {
           computerScore={computerScore}
           humanTeam={humanTeam}
           computerTeam={computerTeam}
-          onPlayAgain={resetGame}
+          onPlayAgain={resetGame}  // ← uses wrapper, not hook's reset directly
         />
       )}
     </div>
   );
 }
-///////
