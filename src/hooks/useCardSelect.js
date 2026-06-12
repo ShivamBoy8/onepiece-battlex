@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRoomEffect } from "./useRoomEffect";
 import { useDarknessEffect } from "./useDarknessEffect";
 import { useAlliancePact } from "./useAlliancePact";
+import { useBrookSkip } from "./useBrooktSkip";
 
 
 export const useCardSelect = () => {
@@ -38,11 +39,17 @@ export const useCardSelect = () => {
     setComputerScore,
   });
 
+  const { applyBrookSkip } = useBrookSkip({
+  setPickTurn,
+  setRound,
+});
+
 
   const {applyAllianceEffect} = useAlliancePact({
   setHumanScore,
   setComputerScore,
   }) ;
+  
 
 
   const handleCardSelect = (selectedCard, isHumanTurn) => {
@@ -92,7 +99,11 @@ export const useCardSelect = () => {
        applyAllianceEffect(newHumanTeam,true,selectedCard.synergyBonus);
        }
 
-      setPickTurn(false);
+       if(selectedCard.id=="cb_yomi"){
+        applyBrookSkip(true)
+       }
+
+      if (selectedCard.id !== "cb_yomi") setPickTurn(false);
 
     } else {
       setComputerPicked(selectedCard);
@@ -112,9 +123,14 @@ export const useCardSelect = () => {
        applyAllianceEffect(newComputerTeam,false,selectedCard.synergyBonus);
        }
 
-      const nextRound = round + 1;
-      setRound(nextRound);
-      setPickTurn(true);
+       if(selectedCard.id=="cb_yomi"){
+        applyBrookSkip(false)
+       }
+
+      if (selectedCard.id !== "cb_yomi") {
+       setRound(prev => prev + 1);
+       setPickTurn(true);
+      }
     }
   };
 
