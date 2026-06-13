@@ -5,6 +5,7 @@ import { useAlliancePact } from "./useAlliancePact";
 import { useBrookSkip } from "./useBrooktSkip";
 import { useFrankyBeam } from "./useFrankyBeam";
 import { useSoulDrain } from "./useSoulDrain";
+import { useSadGas } from "./useSadGas";
 
 
 export const useCardSelect = () => {
@@ -62,31 +63,37 @@ export const useCardSelect = () => {
     setHumanScore,
     setComputerScore,
   });
+
+  const {applySadGas}=useSadGas({
+    setHumanScore,
+    setComputerScore,
+  })
   
 
 
   const handleCardSelect = (selectedCard, isHumanTurn) => {
-    const scoreToAdd = selectedCard.totalPower || 0;
-    const team       = isHumanTurn ? humanTeam : computerTeam;
+    const scoreToAdd = selectedCard.totalPower || 0; //current card total will be added here
+    const team       = isHumanTurn ? humanTeam : computerTeam; //will check whose turn
 
-    let bonus = 0;
+    let bonus = 0; //synergybonus here
 
-    if (selectedCard.type === "powerup") {
-  // Skip generic synergy for cards with custom team-count logic
-  if (!selectedCard.teamSynergyCount) {
-    const hasSynergy = selectedCard.synergyWith?.some(id =>
-      team.some(card => card.id === id)
-    );
-    if (hasSynergy) {
-      bonus += selectedCard.synergyBonus || 0;
+  if (selectedCard.type === "powerup") {
+      // Skip generic synergy for cards with custom team-count logic
+    if (!selectedCard.teamSynergyCount) {
+        const hasSynergy = selectedCard.synergyWith?.some(id =>
+        team.some(card => card.id === id)
+        );
+       if (hasSynergy) {
+         bonus += selectedCard.synergyBonus || 0;
+      }
     }
-  }
-} else {
+  } else {
   // character card: check if any powerup in team boosts it
   const matchingPowerCards = team.filter(
     card =>
       card.type === "powerup" &&
-      selectedCard.powerCard?.includes(card.id)
+      selectedCard.powerCard?.includes(card.id) 
+      //if already existing powercard in team and matches cuurent card synergy add crad synergy bonus
   );
   matchingPowerCards.forEach(card => {
     bonus += card.synergyBonus || 0;
@@ -112,6 +119,10 @@ export const useCardSelect = () => {
        applyAllianceEffect(newHumanTeam,true,selectedCard.synergyBonus);
        }
 
+       if (selectedCard.id === "cb_punk_hazard") {
+          applySadGas(true, computerTeamRef.current);
+      }
+
        if (selectedCard.id === "rp_cola")
         applyFrankyBeam(computerTeamRef.current, true);
 
@@ -122,6 +133,8 @@ export const useCardSelect = () => {
        if (selectedCard.id === "pm_soul") {
         applySoulDrain(true);
        }
+
+        
 
       if (selectedCard.id !== "cb_yomi") setPickTurn(false);
 
@@ -149,6 +162,10 @@ export const useCardSelect = () => {
        if(selectedCard.id=="cb_yomi"){
         applyBrookSkip(false)
        }
+       if (selectedCard.id === "cb_punk_hazard") {
+       applySadGas(false,humanTeamRef.current);
+       }
+       
        if (selectedCard.id === "pm_soul") {
          applySoulDrain(false);
        }

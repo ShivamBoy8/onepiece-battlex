@@ -91,24 +91,6 @@ import pm_tarot from "../assets/characters/pm_tarot.png";
 import pm_age from "../assets/characters/pm_age.png";
 
 
-
-// Helper function to calculate total power for characters
-const calculateCharTotal = (char) => {
-  return (char.str || 0) + (char.haki || 0) + (char.df || 0) + 
-         (char.spd || 0) + (char.stam || 0) + (char.mind || 0);
-}
-
-// Helper function to calculate total power for power cards
-const calculatePowerCardTotal = (card) => {
-  if (card.flatBonus) return card.flatBonus;
-  if (card.statBoosts) {
-    return Object.values(card.statBoosts).reduce((sum, val) => sum + val, 0);
-  }
-  return 0;
-}
-// ════════════════════════════════════════════════════════════
-//  CHARACTERS  (with image + powerCard attributes)
-// ════════════════════════════════════════════════════════════
 const CHARACTERS = [
 
   // ── STRAW HATS ──────────────────────────────────────────────
@@ -433,12 +415,13 @@ const CHARACTERS = [
 const POWER_CARDS = [
 
  // ── RAW POWER ───────────────────────────────────────────────
-  { id:"rp_cola", type:"powerup", rarity:"common", category:"raw_power",
+ { id:"rp_cola", type:"powerup", rarity:"common", category:"raw_power",
   image:frankycola, name:"Franky's Cola Supply",
-  desc:"Three cans of cola overcharge the cyborg's boosters — SUPER! Destroys the weakest card in enemy crew.",
-  flatBonus:60, totalPower:60,
-  synergyWith:["franky"], synergyBonus:20,
-  synergyDesc:"+20 when Franky is in your crew — RADICAL BEAM also triggers" },
+  desc:"SUPER! Three fresh cans slam into Franky's tank — Radical Beam locks on and vaporizes the weakest card in the enemy crew. Cola in, carnage out.",
+  flatBonus:120, totalPower:120,
+  synergyWith:["franky"], synergyBonus:110,
+  synergyDesc:"+110 when Franky is in your crew — he chugs every last drop" },
+
 
   { id:"rp_rumble",       type:"powerup", rarity:"common",    category:"raw_power",
     image:rumble,         name:"Rumble Ball Overdose",
@@ -535,17 +518,17 @@ const POWER_CARDS = [
 
   { id:"pm_darkness", type:"powerup", rarity:"epic", category:"prob_manip",
   image:pm_darkness, name:"Dark Gravity Pull",
-  desc:"Darkness devours everything — reduces enemy total score by 15% instantly.",
+  desc:"Darkness nullifies everything — no Devil Fruit, no Haki, no escape. Yami Yami no Mi swallows the enemy whole and drains 15% of their total score into the void.",
   flatBonus:170, totalPower:170,
   synergyWith:["blackbeard"], synergyBonus:195,
-  synergyDesc:"+195 when Blackbeard wields the Yami Yami no Mi" },
+  synergyDesc:"+195 when Blackbeard commands the darkness — zero mercy, zero light" },
 
-  { id:"pm_soul",         type:"powerup", rarity:"rare",      category:"prob_manip",
-    image:pm_soul,           name:"Soul Pocus",
-    desc:"Big Mom steals lifespan — every opponent fights knowing their time is borrowed.",
-    flatBonus:110,        totalPower:110,
-    synergyWith:["bigmom"],   synergyBonus:130,
-    synergyDesc:"+130 when Big Mom is in your crew" },//cesar
+  { id:"pm_soul", type:"powerup", rarity:"rare", category:"prob_manip",
+  image:pm_soul, name:"Soul Pocus",
+  desc:"Give me your lifespan! Big Mom's invisible hand reaches into the enemy soul — their score bleeds -2% every 2 seconds until the seas go quiet.",
+  flatBonus:110, totalPower:110,
+  synergyWith:["bigmom"], synergyBonus:130,
+  synergyDesc:"+130 when Big Mom commands — soul drain accelerates" },//cesar
 
   { id:"pm_mero",         type:"powerup", rarity:"rare",      category:"prob_manip",
     image:pm_mero,        name:"Mero Mero Beam",
@@ -571,12 +554,12 @@ const POWER_CARDS = [
     synergyWith:["nami"],     synergyBonus:35,
     synergyDesc:"+35 when Nami commands Zeus" },//reduces the power of next enemy card by 10%
 
-   { id:"pm_ope",          type:"powerup", rarity:"legendary", category:"prob_manip",
-    image:pm_ope,            name:"Ope Ope ROOM",
-    desc:"Law's massive ROOM — everything inside is his to rearrange at will! ! Swaps your weakest card with a random enemy card",
-    flatBonus:210,        totalPower:210,
-    synergyWith:["law"],      synergyBonus:55,
-    synergyDesc:"+55 when Law controls the ROOM" },
+  { id:"pm_ope", type:"powerup", rarity:"legendary", category:"prob_manip",
+  image:pm_ope, name:"Ope Ope ROOM",
+  desc:"ROOM! A giant sphere of white light engulfs the battlefield. Inside Law's ROOM, nothing stays where it was — your weakest card is surgically swapped with a random card from the enemy crew.",
+  flatBonus:210, totalPower:210,
+  synergyWith:["law"], synergyBonus:55,
+    synergyDesc:"+55 when Law enters the ROOM — the Surgeon of Death operates at full power" },
 
   { id:"cb_rokushiki",    type:"powerup", rarity:"rare",      category:"crew_buff",
     image:six,            name:"Six Powers Mastery",
@@ -592,12 +575,12 @@ const POWER_CARDS = [
     synergyWith:["jinbe"],    synergyBonus:235,
     synergyDesc:"+235 when Jinbe leads with water techniques" },
 
- { id:"cb_yomi", type:"powerup", rarity:"epic", category:"crew_buff",
+   { id:"cb_yomi", type:"powerup", rarity:"epic", category:"crew_buff",
   image:cb_yomi, name:"Soul King Concert",
-  desc:"Brook's haunting melody echoes across the battlefield — enemy crew stands paralyzed, losing their next pick turn.",
+  desc:"Yohohoho... shall I play you a song? Brook's Soul King melody floods the battlefield — every enemy freezes mid-step, their next pick turn stolen by the haunting refrain.",
   flatBonus:160, totalPower:160,
   synergyWith:["brook"], synergyBonus:120,
-  synergyDesc:"+120 when Brook is in crew — TURN SKIP triggers for the enemy" },
+   synergyDesc:"+120 when Brook performs — the Soul King always gets an encore" },
 
 
   { id:"cb_archeology",   type:"powerup", rarity:"epic",      category:"crew_buff",
@@ -608,12 +591,12 @@ const POWER_CARDS = [
     synergyDesc:"+170 when Robin reads the Poneglyphs" },
 
 
-  { id:"cb_punk_hazard",  type:"powerup", rarity:"epic",      category:"crew_buff",
-    image:cb_punk_hazard,           name:"SAD Gas Cloud",
-    desc:"Caesar's toxic gases disorient every enemy on the entire battlefield.",
-    flatBonus:152,        totalPower:152,
-    synergyWith:["caesar","monet","vergo"],  synergyBonus:185,
-    synergyDesc:"+185 if any Punk Hazard character is in your crew" },////cesar
+  { id:"cb_punk_hazard", type:"powerup", rarity:"epic", category:"crew_buff",
+  image:cb_punk_hazard, name:"SAD Gas Cloud",
+  desc:"Caesar Clown unleashes his deadly SAD compound — drains 5% enemy score per card they hold. The more they've built, the harder they fall.",
+  flatBonus:152, totalPower:152,
+  synergyWith:["caesar","monet","vergo"], synergyBonus:185,
+  synergyDesc:"+185 if Caesar, Monet or Vergo stands in the gas with you" },////cesar
 
   { id:"cb_navy_fist",    type:"powerup", rarity:"rare",      category:"crew_buff",
     image:cb_navy_fist,           name:"Navy Fist of Justice",

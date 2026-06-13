@@ -45,7 +45,7 @@ const Card = ({
       {showInfo && (
         <div className="absolute inset-0 z-10 bg-[#0c1623]/97 rounded-xl p-3 flex flex-col justify-center gap-2 border border-[#e2c25e]/30">
           <h3 className="text-[#e2c25e] font-bold text-xs text-center mb-1 line-clamp-1">{name}</h3>
-          <p className="text-[10px] text-gray-400 text-center line-clamp-2 mb-1">{desc}</p>
+          <p className="text-[10px] text-gray-400 text-center line-clamp-3 mb-1">{desc}</p>
 
           {type !== "powerup" ? (
             <div className="flex flex-col gap-1.5">
