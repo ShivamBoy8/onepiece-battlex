@@ -4,6 +4,7 @@ import { useDarknessEffect } from "./useDarknessEffect";
 import { useAlliancePact } from "./useAlliancePact";
 import { useBrookSkip } from "./useBrooktSkip";
 import { useFrankyBeam } from "./useFrankyBeam";
+import { useSoulDrain } from "./useSoulDrain";
 
 
 export const useCardSelect = () => {
@@ -27,6 +28,10 @@ export const useCardSelect = () => {
     ...humanTeam.map(card => card.id),
     ...computerTeam.map(card => card.id),
   ];
+  const { applySoulDrain, stopSoulDrain } = useSoulDrain({
+  setHumanScore,
+  setComputerScore,
+});
 
   const { applyRoomEffect } = useRoomEffect({
     setHumanTeam,
@@ -114,6 +119,10 @@ export const useCardSelect = () => {
         applyBrookSkip(true)
        }
 
+       if (selectedCard.id === "pm_soul") {
+        applySoulDrain(true);
+       }
+
       if (selectedCard.id !== "cb_yomi") setPickTurn(false);
 
     } else {
@@ -140,6 +149,9 @@ export const useCardSelect = () => {
        if(selectedCard.id=="cb_yomi"){
         applyBrookSkip(false)
        }
+       if (selectedCard.id === "pm_soul") {
+         applySoulDrain(false);
+       }
 
       if (selectedCard.id !== "cb_yomi") {
        setRound(prev => prev + 1);
@@ -150,6 +162,7 @@ export const useCardSelect = () => {
 
   useEffect(() => {
     if (round > 5) {
+       stopSoulDrain();
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
@@ -161,6 +174,7 @@ export const useCardSelect = () => {
   }, [round]);
 
   const resetGame = () => {
+    stopSoulDrain();
     setHumanPicked(null);
     setComputerPicked(null);
     setHumanScore(0);

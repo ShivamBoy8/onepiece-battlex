@@ -72,11 +72,11 @@ import rp_conqueror from "../assets/characters/rp_conqueror.png";
 import cb_revs from "../assets/characters/cb_revs.png";
 import rp_gura from "../assets/characters/rp_gura.png";
 import rp_magma from "../assets/characters/rp_magma.png";
-import rp_nika from "../assets/characters/rp_nika.png";
+
 import cb_navy_fist from "../assets/characters/cb_navy_fist.png";
 
 import cb_punk_hazard from "../assets/characters/cb_punk_hazard.png";
-import cb_homies from "../assets/characters/cb_homies.png";
+
 import cb_archeology from "../assets/characters/cb_archeology.png";
 import cb_yomi from "../assets/characters/cb_yomi.png";
 import cb_fishman from "../assets/characters/cb_fishman.png";
@@ -90,7 +90,7 @@ import pm_darkness from "../assets/characters/pm_darkness.png";
 import pm_tarot from "../assets/characters/pm_tarot.png";
 import pm_age from "../assets/characters/pm_age.png";
 
-import cs_pirate_king from "../assets/characters/cs_pirate_king.png";
+
 
 // Helper function to calculate total power for characters
 const calculateCharTotal = (char) => {
@@ -116,7 +116,7 @@ const CHARACTERS = [
     str:95, haki:98, df:90, spd:92, stam:96, mind:70, type:"char",
     desc:"Gear 5 • Nika Nika no Mi • Sun God awakening",
     totalPower:541,
-    powerCard:["rp_gear5", "rp_nika", "cs_brothers",] },
+    powerCard:["rp_gear5", "cs_brothers",] },
 
   { id:"zoro",       name:"Roronoa Zoro",           image:zoro,         group:"straw_hats",
     str:96, haki:94, df:0,  spd:90, stam:93, mind:72, type:"char",
@@ -189,7 +189,7 @@ const CHARACTERS = [
     str:98, haki:93, df:96, spd:72, stam:100,mind:62, type:"char",
     desc:"Soru Soru no Mi • Homies army • Soul Pocus",
     totalPower:521,
-    powerCard:["pm_soul", "cb_homies", "cs_yonko_pact"] },
+    powerCard:["pm_soul", "cs_yonko_pact"] },
 
   { id:"blackbeard", name:"Marshall D. Teach",       image:blackbeard,   group:"emperors",
     str:93, haki:86, df:95, spd:68, stam:97, mind:78, type:"char",
@@ -319,19 +319,19 @@ const CHARACTERS = [
     str:99, haki:100,df:0,  spd:97, stam:98, mind:96, type:"char",
     desc:"King of Pirates • Voice of All Things • Will of D.",
     totalPower:490,
-    powerCard:["cs_pirate_king",] },
+    powerCard:[] },
 
   { id:"rayleigh",   name:"Silvers Rayleigh",        image:rayleigh,         group:"roger_pirates",
     str:93, haki:99, df:0,  spd:90, stam:88, mind:95, type:"char",
     desc:"Dark King • Haki master • Roger's first mate",
     totalPower:465,
-    powerCard:["cs_pirate_king",  "pm_future"] },
+    powerCard:[  "pm_future"] },
 
   { id:"scopper",    name:"Scopper Gaban",           image:scopper,         group:"roger_pirates",
     str:88, haki:88, df:0,  spd:85, stam:85, mind:82, type:"char",
     desc:"Roger Pirates vice-captain • Dual hatchet user",
     totalPower:428,
-    powerCard:["cs_pirate_king"] },
+    powerCard:[] },
 
   // ── SUPERNOVAS ──────────────────────────────────────────────
   { id:"kid",        name:"Eustass Kid",             image:kid,          group:"supernovas",
@@ -433,103 +433,88 @@ const CHARACTERS = [
 const POWER_CARDS = [
 
  // ── RAW POWER ───────────────────────────────────────────────
-  { id:"rp_cola",         type:"powerup", rarity:"common",    category:"raw_power",
-    image:frankycola,     name:"Franky's Cola Supply",
-    desc:"Three cans of cola overcharge the cyborg's boosters for one massive hit.",
-    flatBonus:60,         totalPower:60,
-    synergyWith:["franky"],   synergyBonus:20,
-    synergyDesc:"+20 when Franky is in your crew" },
+  { id:"rp_cola", type:"powerup", rarity:"common", category:"raw_power",
+  image:frankycola, name:"Franky's Cola Supply",
+  desc:"Three cans of cola overcharge the cyborg's boosters — SUPER! Destroys the weakest card in enemy crew.",
+  flatBonus:60, totalPower:60,
+  synergyWith:["franky"], synergyBonus:20,
+  synergyDesc:"+20 when Franky is in your crew — RADICAL BEAM also triggers" },
 
   { id:"rp_rumble",       type:"powerup", rarity:"common",    category:"raw_power",
     image:rumble,         name:"Rumble Ball Overdose",
     desc:"Chopper takes three Rumble Balls — Monster Point goes completely wild.",
-    flatBonus:65,         totalPower:65,
-    synergyWith:["chopper"],  synergyBonus:25,
-    synergyDesc:"+25 when Chopper is in your crew" },
+    flatBonus:125,         totalPower:125,
+    synergyWith:["chopper"],  synergyBonus:250,
+    synergyDesc:"+250 when Chopper is in your crew" },
 
   { id:"rp_ashura",       type:"powerup", rarity:"rare",      category:"raw_power",
     image:ashura,         name:"Ashura: Nine Sword Style",
     desc:"Zoro manifests nine phantom blades in a single devastating strike.",
-    flatBonus:120,        totalPower:120,
-    synergyWith:["zoro"],     synergyBonus:35,
-    synergyDesc:"+35 when Zoro is in your crew" },
+    flatBonus:150,        totalPower:150,
+    synergyWith:["zoro"],     synergyBonus:275,
+    synergyDesc:"+275 when Zoro is in your crew" },
 
   { id:"rp_gura",         type:"powerup", rarity:"rare",      category:"raw_power",
     image:rp_gura,           name:"Gura Gura Shockwave",
     desc:"A world-shattering quake punch that splits the very sea.",
-    flatBonus:130,        totalPower:130,
-    synergyWith:["whitebeard","blackbeard"],   synergyBonus:35,
-    synergyDesc:"+35 when a quake wielder is in your crew" },
+    flatBonus:130,        totalPower:230,
+    synergyWith:["whitebeard","blackbeard"],   synergyBonus:265,
+    synergyDesc:"+265 when a quake wielder is in your crew" },
 
   { id:"rp_magma",        type:"powerup", rarity:"rare",      category:"raw_power",
     image:rp_magma,           name:"Magma Fist",
     desc:"Akainu's magma eruption burns even fire itself to cinders.",
     flatBonus:125,        totalPower:125,
-    synergyWith:["akainu"],   synergyBonus:30,
-    synergyDesc:"+30 when Akainu is in your crew" },
+    synergyWith:["akainu"],   synergyBonus:230,
+    synergyDesc:"+230 when Akainu is in your crew" },
 
   { id:"rp_conqueror",    type:"powerup", rarity:"rare",      category:"raw_power",
     image:rp_conqueror, name:"Conqueror's Burst",
     desc:"Supreme King Haki erupts, knocking out weaker opponents instantly.",
     flatBonus:115,        totalPower:115,
     synergyWith:["shanks","luffy","kaido","yamato","hancock","whitebeard","roger"],
-    synergyBonus:30,
-    synergyDesc:"+30 if any Conqueror's user is in your crew" },
+    synergyBonus:330,
+    synergyDesc:"+330 if any Conqueror's user is in your crew" },
 
   { id:"rp_awakening",    type:"powerup", rarity:"epic",      category:"raw_power",
     image:devilfruit,     name:"Devil Fruit Awakening",
     desc:"The DF taps its true will, reshaping the environment itself.",
     flatBonus:165,        totalPower:165,
     synergyWith:["luffy","law","kid","bigmom","kaido","blackbeard","katakuri","doflamingo","rob_lucci"],
-    synergyBonus:35,
-    synergyDesc:"+35 if any Awakened DF user is in your crew" },
+    synergyBonus:135,
+    synergyDesc:"+135 if any Awakened DF user is in your crew" },
 
   { id:"rp_gear5",        type:"powerup", rarity:"epic",      category:"raw_power",
     image:gear,           name:"Gear Fifth",
     desc:"The true awakening of the Nika Nika no Mi — freedom incarnate.",
     flatBonus:190,        totalPower:190,
-    synergyWith:["luffy"],    synergyBonus:50,
-    synergyDesc:"+50 bonus when Luffy is in your crew" },
+    synergyWith:["luffy"],    synergyBonus:270,
+    synergyDesc:"+270 bonus when Luffy is in your crew" },
 
-
-  { id:"rp_nika",         type:"powerup", rarity:"legendary", category:"raw_power",
-    image:rp_nika,           name:"Sun God Nika",
-    desc:"The legendary warrior of liberation — all things become possible.",
-    flatBonus:230,        totalPower:230,
-    synergyWith:["luffy"],    synergyBonus:60,
-    synergyDesc:"+60 when Luffy wields the Sun God's power" },
 
 //   // ── CHARACTER SYNERGY ────────────────────────────────────────
   { id:"cs_brothers",     type:"powerup", rarity:"common",    category:"char_synergy",
     image:sake,           name:"Sake of brotherhood",
     desc:"Nothing burns hotter than the will to protect your brother.",
-    flatBonus:58,         totalPower:58,
-    synergyWith:["luffy","ace","sabo"],  synergyBonus:45,
-    synergyDesc:"+45 if 2 or more of Luffy, Ace, Sabo are in the crew" },
+    flatBonus:158,         totalPower:158,
+    synergyWith:["luffy","ace","sabo"],  synergyBonus:245,
+    synergyDesc:"+245 if 2 or more of Luffy, Ace, Sabo are in the crew" },
 
   { id:"cs_swordsmen",    type:"powerup", rarity:"rare",      category:"char_synergy",
     image:resolve,        name:"Supreme Swordsmen's Resolve",
     desc:"Mihawk and Zoro push blades and spirits to the absolute limit.",
-    flatBonus:110,        totalPower:110,
-    synergyWith:["mihawk","zoro"],  synergyBonus:45, synergyRequireAll:true,
-    synergyDesc:"+45 if BOTH Mihawk & Zoro are in your crew" },
+    flatBonus:110,        totalPower:170,
+    synergyWith:["mihawk","zoro"],  synergyBonus:245, synergyRequireAll:true,
+    synergyDesc:"+245 if  Mihawk or Zoro are in your crew" },
 
-  { id:"cs_pirate_king",  type:"powerup", rarity:"rare",      category:"char_synergy",
-    image:cs_pirate_king,           name:"King of Pirates' Promise",
-    desc:"Roger's dream lives on in every straw hat worn since.",
-    flatBonus:100,        totalPower:100,
-    synergyWith:["luffy","roger","shanks","rayleigh"],  synergyBonus:35,
-    synergyDesc:"+35 if any Roger lineage character is present" },
 
-  
-
-  { id:"cs_yonko_pact",   type:"powerup", rarity:"legendary", category:"char_synergy",
-    image:yonkoAlliancePact, name:"Yonko Alliance Pact",
-    desc:"Two emperors unite — the seas and skies themselves tremble.",
-    flatBonus:0,          totalPower:0,
-    synergyWith:["kaido","bigmom","shanks","blackbeard","whitebeard"],
-    teamSynergyCount:2,   teamSynergyBonus:210,
-    synergyDesc:"+210 if your crew has ≥ 2 Yonko/Emperors" },
+ { id:"cs_yonko_pact", type:"powerup", rarity:"legendary", category:"char_synergy",
+  image:yonkoAlliancePact, name:"Yonko Alliance Pact",
+  desc:"Two emperors unite — the seas tremble. Grants +210 bonus and doubles your weakest Yonko's power.",
+  flatBonus:100, totalPower:100,
+  synergyWith:["kaido","bigmom","shanks","blackbeard","whitebeard"],
+  teamSynergyCount:2, teamSynergyBonus:210,
+  synergyDesc:"+210 if your crew has ≥ 2 Yonko — weakest emperor's power is also added as bonus" },
 
   // ── PROBABILITY MANIPULATION ─────────────────────────────────
 
@@ -539,28 +524,28 @@ const POWER_CARDS = [
     desc:"Foresee the battle flow — redirect any damage to a straw effigy.",
     flatBonus:100,        totalPower:100,
     synergyWith:["hawkins"],  synergyBonus:40,
-    synergyDesc:"+40 when Hawkins is in your crew" },
+    synergyDesc:"+40 when Hawkins is in your crew" },//next special power used will backfire enemy
 
- { id:"pm_age",          type:"powerup", rarity:"epic",      category:"prob_manip",
+   { id:"pm_age",          type:"powerup", rarity:"epic",      category:"prob_manip",
     image:pm_age,           name:"Age Reversal",
     desc:"Bonney rewinds your strongest fighter to their absolute physical peak.",
     flatBonus:160,        totalPower:160,
     synergyWith:["bonney"],   synergyBonus:40,
     synergyDesc:"+40 when Bonney is in your crew" },
 
-  { id:"pm_darkness",     type:"powerup", rarity:"epic",      category:"prob_manip",
-    image:pm_darkness,           name:"Dark Gravity Pull",
-    desc:"Darkness absorbs all techniques — nothing can escape the pull.",
-    flatBonus:170,        totalPower:170,
-    synergyWith:["blackbeard"],  synergyBonus:45,
-    synergyDesc:"+45 when Blackbeard wields the Yami Yami" },
+  { id:"pm_darkness", type:"powerup", rarity:"epic", category:"prob_manip",
+  image:pm_darkness, name:"Dark Gravity Pull",
+  desc:"Darkness devours everything — reduces enemy total score by 15% instantly.",
+  flatBonus:170, totalPower:170,
+  synergyWith:["blackbeard"], synergyBonus:195,
+  synergyDesc:"+195 when Blackbeard wields the Yami Yami no Mi" },
 
   { id:"pm_soul",         type:"powerup", rarity:"rare",      category:"prob_manip",
     image:pm_soul,           name:"Soul Pocus",
     desc:"Big Mom steals lifespan — every opponent fights knowing their time is borrowed.",
     flatBonus:110,        totalPower:110,
-    synergyWith:["bigmom"],   synergyBonus:30,
-    synergyDesc:"+30 when Big Mom is in your crew" },
+    synergyWith:["bigmom"],   synergyBonus:130,
+    synergyDesc:"+130 when Big Mom is in your crew" },//cesar
 
   { id:"pm_mero",         type:"powerup", rarity:"rare",      category:"prob_manip",
     image:pm_mero,        name:"Mero Mero Beam",
@@ -573,8 +558,8 @@ const POWER_CARDS = [
     image:pm_warp,           name:"Nikyu Nikyu Teleport",
     desc:"Kuma's Paw-Paw fruit sends attacks — and enemies — flying across the world.",
     flatBonus:265,        totalPower:265,
-    synergyWith:["kuma"],     synergyBonus:55,
-    synergyDesc:"+55 when Kuma is in your crew" },
+    synergyWith:["kuma"],     synergyBonus:155,
+    synergyDesc:"+155 when Kuma is in your crew" },
 
   // ── CREW BUFFS ───────────────────────────────────────────────
 
@@ -584,11 +569,11 @@ const POWER_CARDS = [
     desc:"Nami commands Zeus to blanket the entire battlefield in lightning.",
     flatBonus:105,        totalPower:105,
     synergyWith:["nami"],     synergyBonus:35,
-    synergyDesc:"+35 when Nami commands Zeus" },
+    synergyDesc:"+35 when Nami commands Zeus" },//reduces the power of next enemy card by 10%
 
    { id:"pm_ope",          type:"powerup", rarity:"legendary", category:"prob_manip",
     image:pm_ope,            name:"Ope Ope ROOM",
-    desc:"Law's massive ROOM — everything inside is his to rearrange at will.",
+    desc:"Law's massive ROOM — everything inside is his to rearrange at will! ! Swaps your weakest card with a random enemy card",
     flatBonus:210,        totalPower:210,
     synergyWith:["law"],      synergyBonus:55,
     synergyDesc:"+55 when Law controls the ROOM" },
@@ -597,60 +582,54 @@ const POWER_CARDS = [
     image:six,            name:"Six Powers Mastery",
     desc:"Rokushiki techniques push speed and combat beyond all human limits.",
     flatBonus:110,        totalPower:110,
-    synergyWith:["sanji","robin","rob_lucci"],  synergyBonus:25,
-    synergyDesc:"+25 if a Rokushiki user is in your crew" },
+    synergyWith:["sanji","robin","rob_lucci"],  synergyBonus:225,
+    synergyDesc:"+225 if a Rokushiki user is in your crew" },
 
   { id:"cb_fishman",      type:"powerup", rarity:"rare",      category:"crew_buff",
     image:cb_fishman,           name:"Fish-Man Karate Formation",
     desc:"Jinbe manipulates ocean water itself, turning the sea into a weapon.",
     flatBonus:115,        totalPower:115,
-    synergyWith:["jinbe"],    synergyBonus:35,
-    synergyDesc:"+35 when Jinbe leads with water techniques" },
+    synergyWith:["jinbe"],    synergyBonus:235,
+    synergyDesc:"+235 when Jinbe leads with water techniques" },
 
-  { id:"cb_yomi",         type:"powerup", rarity:"epic",      category:"crew_buff",
-    image:cb_yomi,           name:"Soul King Concert",
-    desc:"Brook's music freezes enemy souls and rallies allies simultaneously.",
-    flatBonus:160,        totalPower:160,
-    synergyWith:["brook"],    synergyBonus:40,
-    synergyDesc:"+40 when Brook performs for the crew" },
+ { id:"cb_yomi", type:"powerup", rarity:"epic", category:"crew_buff",
+  image:cb_yomi, name:"Soul King Concert",
+  desc:"Brook's haunting melody echoes across the battlefield — enemy crew stands paralyzed, losing their next pick turn.",
+  flatBonus:160, totalPower:160,
+  synergyWith:["brook"], synergyBonus:120,
+  synergyDesc:"+120 when Brook is in crew — TURN SKIP triggers for the enemy" },
 
 
   { id:"cb_archeology",   type:"powerup", rarity:"epic",      category:"crew_buff",
     image:cb_archeology,           name:"Ancient Weapon Blueprint",
     desc:"Robin deciphers a Poneglyph, unlocking a forgotten tactical advantage.",
     flatBonus:155,        totalPower:155,
-    synergyWith:["robin"],    synergyBonus:40,
-    synergyDesc:"+40 when Robin reads the Poneglyphs" },
+    synergyWith:["robin"],    synergyBonus:170,
+    synergyDesc:"+170 when Robin reads the Poneglyphs" },
 
-  { id:"cb_homies",       type:"powerup", rarity:"epic",      category:"crew_buff",
-    image:cb_homies,           name:"Homies Army",
-    desc:"Big Mom's soul-infused Homies massively swell the crew's numbers.",
-    flatBonus:170,        totalPower:170,
-    synergyWith:["bigmom"],   synergyBonus:45,
-    synergyDesc:"+45 when Big Mom summons her Homies" },
 
   { id:"cb_punk_hazard",  type:"powerup", rarity:"epic",      category:"crew_buff",
     image:cb_punk_hazard,           name:"SAD Gas Cloud",
     desc:"Caesar's toxic gases disorient every enemy on the entire battlefield.",
     flatBonus:152,        totalPower:152,
-    synergyWith:["caesar","monet","vergo"],  synergyBonus:35,
-    synergyDesc:"+35 if any Punk Hazard character is in your crew" },
+    synergyWith:["caesar","monet","vergo"],  synergyBonus:185,
+    synergyDesc:"+185 if any Punk Hazard character is in your crew" },////cesar
 
   { id:"cb_navy_fist",    type:"powerup", rarity:"rare",      category:"crew_buff",
     image:cb_navy_fist,           name:"Navy Fist of Justice",
     desc:"Marines fight not for greed but for an absolute cause — and it shows.",
     flatBonus:115,        totalPower:115,
     synergyWith:["garp","sengoku","akainu","aokiji","kizaru","fujitora","smoker"],
-    synergyBonus:30,
-    synergyDesc:"+30 if any Admiral or higher is in your crew" },
+    synergyBonus:230,
+    synergyDesc:"+230 if any Admiral or higher is in your crew" },
 
   { id:"cb_revs",         type:"powerup", rarity:"epic",      category:"crew_buff",
     image:cb_revs,           name:"Revolutionary Uprising",
     desc:"The Revolutionary Army strikes from the shadows on a global scale.",
     flatBonus:155,        totalPower:155,
     synergyWith:["dragon","sabo","ivankov"],
-    teamSynergyCount:2,   teamSynergyBonus:165,
-    synergyDesc:"+165 if ≥ 2 Revolutionary Army members are in your crew" },
+    synergyBonus:165,
+    synergyDesc:"+165 if a Revolutionary Army members are in your crew" },
 
 
   { id:"cbparamount_",    type:"powerup", rarity:"mythic",    category:"crew_buff",
@@ -658,8 +637,8 @@ const POWER_CARDS = [
     desc:"Those who survived Marineford carry unbreakable war-forged resolve.",
     flatBonus:260,        totalPower:260,
     synergyWith:["luffy","whitebeard","ace","shanks","marco","jinbe","hancock"],
-    synergyBonus:60,
-    synergyDesc:"+60 if any Paramount War survivor is in your crew" },
+    synergyBonus:160,
+    synergyDesc:"+160 if any Paramount War survivor is in your crew" },
 
 ];
 
