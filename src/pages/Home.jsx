@@ -42,7 +42,7 @@ export default function Home() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Exo+2:wght@300;400;600;700&display=swap');
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        .home-root, .home-root * { box-sizing: border-box; margin: 0; padding: 0; }
 
         .home-root {
           min-height: 100vh;
@@ -400,7 +400,7 @@ export default function Home() {
           .cta-group { flex-direction: column; align-items: center; }
         }
       `}</style>
-
+  <Navbar/>
       <div className="home-root">
       
         {/* ember atmosphere */}
@@ -414,6 +414,8 @@ export default function Home() {
             animationDelay: e.animDel,
           }} />
         ))}
+
+         
 
         {/* ── HERO ── */}
         <div className={`hero page-fade ${visible ? 'in' : ''}`}>

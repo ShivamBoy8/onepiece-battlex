@@ -5,6 +5,7 @@ import ScoreBoard from "../components/ScoreBoard";
 import WinnerModal from "../components/WinnerModal";
 import { useCardSelect } from "../hooks/useCardSelect";
 import overtaken from "../assets/music/overtaken.mp3";
+import EffectToastLayer from "../components/EffectToastLayer";
 
 export default function Game() {
   const bgMusic      = useRef(null);
@@ -40,7 +41,7 @@ export default function Game() {
 
   const {
     humanScore, computerScore, pickTurn, round,
-    humanTeam, computerTeam, gameOver, usedCardIds,
+    humanTeam, computerTeam, gameOver, usedCardIds, toasts,
     handleCardSelect, resetGame: resetGameState,
   } = useCardSelect();
 
@@ -59,6 +60,11 @@ export default function Game() {
   return (
     <div className="min-h-screen w-full bg-slate-950">
       <Navbar toggleMute={toggleMute} muted={muted} />
+       {
+        !gameOver && (
+          <EffectToastLayer toasts={toasts} />
+        )
+       }
 
       <ScoreBoard
         humanTeam={humanTeam}

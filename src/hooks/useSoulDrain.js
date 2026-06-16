@@ -1,29 +1,21 @@
-
 import { useEffect, useRef } from "react";
 
-export const useSoulDrain = ({
-  setHumanScore,
-  setComputerScore,
-}) => {
+export const useSoulDrain = ({ setHumanScore, setComputerScore, pushToast }) => {
   const intervalRef = useRef(null);
- 
+
   const applySoulDrain = (isHumanTurn) => {
-  
     if (intervalRef.current) clearInterval(intervalRef.current);
+
+    pushToast?.(
+      "👻 Soul Pocus! Enemy score now bleeds −1% every 2s",
+      isHumanTurn ? "good" : "bad"
+    );
 
     intervalRef.current = setInterval(() => {
       if (isHumanTurn) {
-        
-        setComputerScore(prev => {
-          const drain = Math.round(prev * 0.01);
-          return prev - drain;
-        });
+        setComputerScore(prev => prev - Math.round(prev * 0.01));
       } else {
-        // computer picked soul pocus → drain human score
-        setHumanScore(prev => {
-          const drain = Math.round(prev * 0.01);
-          return prev - drain;
-        });
+        setHumanScore(prev => prev - Math.round(prev * 0.01));
       }
     }, 2000);
   };
@@ -35,7 +27,6 @@ export const useSoulDrain = ({
     }
   };
 
-  // cleanup on unmount
   useEffect(() => {
     return () => stopSoulDrain();
   }, []);

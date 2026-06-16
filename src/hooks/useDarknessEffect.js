@@ -1,17 +1,17 @@
-export const useDarknessEffect = ({
-    setHumanScore,
-    setComputerScore,
-}) => {
+export const useDarknessEffect = ({ setHumanScore, setComputerScore, pushToast }) => {
+  const applyDarkEffect = (isHumanTurn, enemyScore) => {
+    const drained = Math.round((enemyScore || 0) * 0.15);
+    pushToast?.(
+      `🌑 Dark Gravity Pull! Drained ${drained} pts from the enemy`,
+      isHumanTurn ? "good" : "bad"
+    );
 
-    const applyDarkEffect = (isHumanTurn) => {
+    if (isHumanTurn) {
+      setComputerScore(prev => Math.round(prev * 0.85));
+    } else {
+      setHumanScore(prev => Math.round(prev * 0.85));
+    }
+  };
 
-        if (isHumanTurn) {
-            setComputerScore(prev => Math.round(prev * 0.85));
-        } else {
-            setHumanScore(prev => Math.round(prev * 0.85));
-        }
-
-    };
-
-    return { applyDarkEffect };
+  return { applyDarkEffect };
 };

@@ -1,14 +1,7 @@
-export const useFrankyBeam = ({
-  setHumanTeam,
-  setComputerTeam,
-  setHumanScore,
-  setComputerScore,
-}) => {
-
+export const useFrankyBeam = ({ setHumanTeam, setComputerTeam, setHumanScore, setComputerScore, pushToast }) => {
   const applyFrankyBeam = (enemyTeam, isHumanTurn) => {
-    if (enemyTeam.length === 0) return;  
+    if (enemyTeam.length === 0) return;
 
-    // find weakest card in enemy team
     let weakestIndex = 0;
     for (let i = 1; i < enemyTeam.length; i++) {
       if (enemyTeam[i].totalPower < enemyTeam[weakestIndex].totalPower) {
@@ -16,10 +9,13 @@ export const useFrankyBeam = ({
       }
     }
 
-    const weakestCard = enemyTeam[weakestIndex]; 
+    const weakestCard = enemyTeam[weakestIndex];
+    const newTeam = enemyTeam.filter(card => card.id !== weakestCard.id);
 
-
-    const newTeam = enemyTeam.filter(card => card.id !== weakestCard.id);  
+    pushToast?.(
+      `🤖 Franky's Cola! Vaporized ${weakestCard.name} (-${weakestCard.totalPower})`,
+      isHumanTurn ? "good" : "bad"
+    );
 
     if (isHumanTurn) {
       setComputerTeam(newTeam);

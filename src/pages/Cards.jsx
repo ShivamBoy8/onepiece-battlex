@@ -16,7 +16,7 @@ export default function Cards() {
 
       {/* header */}
       <Navbar/>
-        <div className="pt-20 sm:pt-22">
+        <div style={{ paddingTop: '80px' }}>
             {/* tabs */}
       <div className="flex border-b border-[#e2c25e]/20 ">
         {[
