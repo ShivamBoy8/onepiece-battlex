@@ -20,6 +20,7 @@ const Card = ({
   powerCard,
 }) => {
   const [showInfo, setShowInfo] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false); 
 
   const charStats = [
     { label: "STR",  value: str },
@@ -86,8 +87,19 @@ const Card = ({
       )}
 
       {/* Image */}
-      <div className="w-full aspect-[3/4] md:aspect-[3/3] overflow-hidden bg-[#0c1623] p-3">
-        <img src={image} alt={name} className="w-full h-full object-cover object-top rounded-lg" />
+      <div className="relative w-full aspect-[3/4] md:aspect-[3/3] overflow-hidden bg-[#0c1623] p-3">
+        {/* Skeleton shimmer shown until image finishes loading */}
+        {!imgLoaded && (
+          <div className="absolute inset-3 bg-[#35321a] animate-pulse rounded-lg" />
+        )}
+        <img
+          src={image}
+          alt={name}
+          onLoad={() => setImgLoaded(true)}
+          className={`w-full h-full object-cover object-top rounded-lg transition-opacity duration-300 ${
+            imgLoaded ? "opacity-100" : "opacity-0"
+          }`}
+        />
       </div>
 
       {/* Text */}

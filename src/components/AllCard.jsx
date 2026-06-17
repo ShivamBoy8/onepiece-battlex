@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Card from "../components/Card";
 import { CHARACTERS, POWER_CARDS } from "../characterData/data";
 
+
 export default function AllCard({ onCardSelect, pickTurn, round,usedCardIds = [] }) {
+
+const activePowerCards = useMemo(() => {
   const randomCount = Math.floor(Math.random() * POWER_CARDS.length) + 1;
-
-  const shuffledPowerCards = [...POWER_CARDS].sort(() => Math.random() - 0.5);
-
-  const activePowerCards = shuffledPowerCards.slice(0, randomCount);
-
+  const shuffled = [...POWER_CARDS].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, randomCount);
+}, [round]);
+  
   const allCards = [...CHARACTERS, ...activePowerCards];
   const availableCards = allCards.filter(card => !usedCardIds.includes(card.id));
   const [sixCards, setSixCards] = useState([]);
