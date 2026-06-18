@@ -10,7 +10,7 @@ export const useFrankyBeam = ({ setHumanTeam, setComputerTeam, setHumanScore, se
     }
 
     const weakestCard = enemyTeam[weakestIndex];
-    const newTeam = enemyTeam.filter(card => card.id !== weakestCard.id);
+    const newTeam = enemyTeam.filter((_, index) => index !== weakestIndex);
 
     pushToast?.(
       `🤖 Franky's Cola! Vaporized ${weakestCard.name} (-${weakestCard.totalPower})`,
