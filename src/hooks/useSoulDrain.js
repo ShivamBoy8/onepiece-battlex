@@ -7,7 +7,7 @@ export const useSoulDrain = ({ setHumanScore, setComputerScore, pushToast }) => 
     if (intervalRef.current) clearInterval(intervalRef.current);
 
     pushToast?.(
-      "👻 Soul Pocus! Enemy score now bleeds −1% every 2s",
+      "👻 Soul Pocus! Enemy score now bleeds -1% every 2s",
       isHumanTurn ? "good" : "bad"
     );
 
