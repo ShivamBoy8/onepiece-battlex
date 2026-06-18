@@ -496,7 +496,7 @@ const POWER_CARDS = [
   desc:"Two emperors unite — the seas tremble. Grants +210 bonus and doubles your weakest Yonko's power.",
   flatBonus:100, totalPower:100,
   synergyWith:["kaido","bigmom","shanks","blackbeard","whitebeard"],
-  teamSynergyCount:2, teamSynergyBonus:210,
+  teamSynergyCount:2, synergyBonus:210,
   synergyDesc:"+210 if your crew has ≥ 2 Yonko — weakest emperor's power is also added as bonus" },
 
   // ── PROBABILITY MANIPULATION ─────────────────────────────────
