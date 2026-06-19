@@ -625,13 +625,5 @@ const POWER_CARDS = [
 
 ];
 
-// ── Rarity colours ────────────────────────────────────────────
-const RARITY_COLOR = {
-  common:    { border:"#88aaff66", glow:"#88aaff", badge:"#1a2050", text:"#aabbff", label:"POWER-UP"  },
-  rare:      { border:"#a855f7aa", glow:"#a855f7", badge:"#2a1040", text:"#d09aff", label:"RARE"      },
-  epic:      { border:"#22d3ee99", glow:"#22d3ee", badge:"#002a35", text:"#67e8f9", label:"EPIC"      },
-  legendary: { border:"#ffd70099", glow:"#ffd700", badge:"#3a2800", text:"#ffd966", label:"LEGENDARY" },
-  mythic:    { border:"#ff6b9daa", glow:"#ff6b9d", badge:"#3a0020", text:"#ff9ec4", label:"MYTHICAL"  },
-};
 
-export { CHARACTERS, POWER_CARDS, RARITY_COLOR };
+export { CHARACTERS, POWER_CARDS };
