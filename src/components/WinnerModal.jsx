@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 
 import win1 from "../assets/win/win1.jpeg";
 import win2 from "../assets/win/win2.jpeg";
-import win3 from "../assets/win/win3.png";
+import win3 from "../assets/win/win3.webp";
 import win4 from "../assets/win/win4.webp";
 
 import lose1 from "../assets/lose/lose1.jpeg";
 import lose2 from "../assets/lose/lose2.jpeg";
 import lose3 from "../assets/lose/lose3.jpeg";
-import lose4 from "../assets/lose/lose4.png";
+import lose4 from "../assets/lose/lose4.webp";
 
 // ── result music ──
 import winMusic  from "../assets/music/win.mp3";

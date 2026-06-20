@@ -26,7 +26,7 @@ export default function Cards() {
           <button
             key={tab.key}
             onClick={() => setActiveTab(tab.key)}
-            className={`flex-1 py-4 text-xl font-semibold tracking-wider transition-all
+            className={`flex-1 py-4 text-xl font-semibold tracking-wider transition-all cursor-pointer
               ${activeTab === tab.key
                 ? 'text-[#e2c25e] border-b-2 border-[#e2c25e] bg-[#e2c25e]/5'
                 : 'text-gray-500 hover:text-gray-300'

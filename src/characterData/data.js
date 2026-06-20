@@ -2,7 +2,7 @@ import luffy from "../assets/characters/luffy.jpeg"
 import zoro from "../assets/characters/zoro.webp"
 import sanji from "../assets/characters/sanji.webp"
 import jinbe from "../assets/characters/jimbi.jpeg"
-import chopper from "../assets/characters/chopper.png"
+import chopper from "../assets/characters/chopper.webp"
 import franky from "../assets/characters/franky.jpeg"
 import robin from "../assets/characters/robin.jpeg"
 import shanks from "../assets/characters/shanks.jpeg"
@@ -12,26 +12,26 @@ import blackbeard from "../assets/characters/blackbeard.jpeg"
 import mihawk from "../assets/characters/Dracule Mihawt.jpeg"
 import brook from "../assets/characters/brook.webp"
 import ussop from "../assets/characters/ussop.jpeg"
-import rumble from "../assets/characters/rumble.png"
-import cb_paramount from "../assets/characters/cb_paramount.png"
+import rumble from "../assets/characters/rumble.webp"
+import cb_paramount from "../assets/characters/cb_paramount.webp"
 import ace from "../assets/characters/Portgas D_ Ace.jpeg"
 import law from "../assets/characters/law.webp"
-import kid from "../assets/characters/kid.png"
+import kid from "../assets/characters/kid.webp"
 import hancock from "../assets/characters/hancock.jpeg"
 import gear from "../assets/characters/Gear 5 onepiece logo design.jpeg"
 import frankycola from "../assets/characters/Franky Cola Sticker.webp"
 import yamato from "../assets/characters/yamato.jpeg"
 import whitebeard from "../assets/characters/whitebeard.jpeg"
-import sake from "../assets/characters/sake.png"
-import viver from "../assets/characters/viver.png"
-import ashura from "../assets/characters/ashura.png"
-import supremeKingHaki from "../assets/characters/Supreme_King_Haki.png"
-import six from "../assets/characters/Six.png"
-import devilfruit from "../assets/characters/devilfruit.png"
-import grandfleet from "../assets/characters/grandfleet.png"
-import resolve from "../assets/characters/resolve.png"
-import yonkoAlliancePact from "../assets/characters/Yonko_Alliance_Pact.png"
-import onePieceBrothers from "../assets/characters/sake.png"
+import sake from "../assets/characters/sake.webp"
+import viver from "../assets/characters/viver.webp"
+import ashura from "../assets/characters/ashura.webp"
+import supremeKingHaki from "../assets/characters/Supreme_King_Haki.webp"
+import six from "../assets/characters/Six.webp"
+import devilfruit from "../assets/characters/devilfruit.webp"
+import grandfleet from "../assets/characters/grandfleet.webp"
+import resolve from "../assets/characters/resolve.webp"
+import yonkoAlliancePact from "../assets/characters/Yonko_Alliance_Pact.webp"
+import onePieceBrothers from "../assets/characters/sake.webp"
 import nami from "../assets/characters/nami.jpeg"
 
 import Katakuri from "../assets/characters/Katakuri.jpeg"
@@ -67,28 +67,28 @@ import vergo from "../assets/characters/vergo.jpeg";
 import imu from "../assets/characters/imu.jpeg";
 import vegapunk from "../assets/characters/vegapunk.jpeg";
 
-import rp_conqueror from "../assets/characters/rp_conqueror.png";
+import rp_conqueror from "../assets/characters/rp_conqueror.webp";
 
-import cb_revs from "../assets/characters/cb_revs.png";
-import rp_gura from "../assets/characters/rp_gura.png";
-import rp_magma from "../assets/characters/rp_magma.png";
+import cb_revs from "../assets/characters/cb_revs.webp";
+import rp_gura from "../assets/characters/rp_gura.webp";
+import rp_magma from "../assets/characters/rp_magma.webp";
 
-import cb_navy_fist from "../assets/characters/cb_navy_fist.png";
+import cb_navy_fist from "../assets/characters/cb_navy_fist.webp";
 
-import cb_punk_hazard from "../assets/characters/cb_punk_hazard.png";
+import cb_punk_hazard from "../assets/characters/cb_punk_hazard.webp";
 
-import cb_archeology from "../assets/characters/cb_archeology.png";
-import cb_yomi from "../assets/characters/cb_yomi.png";
-import cb_fishman from "../assets/characters/cb_fishman.png";
-import cb_clima from "../assets/characters/cb_clima.png";
+import cb_archeology from "../assets/characters/cb_archeology.webp";
+import cb_yomi from "../assets/characters/cb_yomi.webp";
+import cb_fishman from "../assets/characters/cb_fishman.webp";
+import cb_clima from "../assets/characters/cb_clima.webp";
 
-import pm_warp from "../assets/characters/pm_warp.png";
-import pm_ope from "../assets/characters/pm_ope.png";
-import pm_mero from "../assets/characters/pm_mero.png";
-import pm_soul from "../assets/characters/pm_soul.png";
-import pm_darkness from "../assets/characters/pm_darkness.png";
-import pm_tarot from "../assets/characters/pm_tarot.png";
-import pm_age from "../assets/characters/pm_age.png";
+import pm_warp from "../assets/characters/pm_warp.webp";
+import pm_ope from "../assets/characters/pm_ope.webp";
+import pm_mero from "../assets/characters/pm_mero.webp";
+import pm_soul from "../assets/characters/pm_soul.webp";
+import pm_darkness from "../assets/characters/pm_darkness.webp";
+import pm_tarot from "../assets/characters/pm_tarot.webp";
+import pm_age from "../assets/characters/pm_age.webp";
 
 
 const CHARACTERS = [

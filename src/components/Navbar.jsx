@@ -27,7 +27,7 @@ const Navbar = ({ toggleMute, muted }) => {
           {isGame && (
             <button
               onClick={() => navigate('/cards')}
-              className="border border-[#e2c25e] text-[#e2c25e] rounded-full px-4 py-2 text-sm font-bold hover:bg-[#e2c25e] hover:text-[#0a101c] transition-all"
+              className="border border-[#e2c25e] text-[#e2c25e] rounded-full px-4 py-2 text-sm font-bold hover:bg-[#e2c25e] hover:text-[#0a101c] transition-all cursor-pointer"
             >
               📋 Cards
             </button>
@@ -36,7 +36,7 @@ const Navbar = ({ toggleMute, muted }) => {
           {(isCards || ishome) && (
             <button
               onClick={() => navigate('/game')}
-              className="border border-[#e2c25e] text-[#e2c25e] rounded-full px-4 py-2 text-sm font-bold hover:bg-[#e2c25e] hover:text-[#0a101c] transition-all"
+              className="border border-[#e2c25e] text-[#e2c25e] rounded-full px-4 py-2 text-sm font-bold hover:bg-[#e2c25e] hover:text-[#0a101c] transition-all cursor-pointer"
             >
               ⚔️ Play Game
             </button>
@@ -46,7 +46,7 @@ const Navbar = ({ toggleMute, muted }) => {
           {isGame && (
             <button
               onClick={toggleMute}
-              className="bg-[#0a101c] border border-[#e2c25e] rounded-full w-10 h-10 flex items-center justify-center text-lg hover:scale-110 transition-transform"
+              className="bg-[#0a101c] border border-[#e2c25e] rounded-full w-10 h-10 flex items-center justify-center text-lg hover:scale-110 transition-transform cursor-pointer"
               title={muted ? "Unmute" : "Mute"}
             >
               {muted ? "🔇" : "🔊"}
