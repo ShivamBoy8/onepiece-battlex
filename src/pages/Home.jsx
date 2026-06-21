@@ -211,17 +211,18 @@ export default function Home() {
 
         /* ── scroll hint ── */
         .scroll-hint {
-          position: absolute;
-          bottom: 32px;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 6px;
-          opacity: 0.35;
-          animation: bob 2s ease-in-out infinite;
-        }
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.35;
+  animation: bob 2s ease-in-out infinite;
+  z-index: 0; 
+}
         @keyframes bob {
           0%, 100% { transform: translateX(-50%) translateY(0); }
           50%       { transform: translateX(-50%) translateY(6px); }
