@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import AllCard from "../components/allCard";
+import AllCard from "../components/AllCard";
 import Navbar from "../components/Navbar";
 import ScoreBoard from "../components/ScoreBoard";
 import WinnerModal from "../components/WinnerModal";

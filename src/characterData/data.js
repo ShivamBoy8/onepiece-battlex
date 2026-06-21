@@ -58,7 +58,7 @@ import hawkins from "../assets/characters/hawkins.jpeg";
 import bonney from "../assets/characters/bonney.jpeg";
 import apoo from "../assets/characters/apoo.jpeg";
 
-import Marco from "../assets/characters/marco.jpeg";
+import Marco from "../assets/characters/Marco.jpeg";
 import carrot from "../assets/characters/carrot.jpeg";
 import rob_lucci from "../assets/characters/rob_lucci.jpeg";
 import caesar from "../assets/characters/caesar.jpeg";
@@ -602,7 +602,7 @@ const POWER_CARDS = [
   desc:"Caesar Clown unleashes his deadly SAD compound — drains 5% enemy score per card they hold. The more they've built, the harder they fall.",
   flatBonus:152, totalPower:152,
   synergyWith:["caesar","monet","vergo"], synergyBonus:185,
-  synergyDesc:"+185 if Caesar, Monet or Vergo stands in the gas with you" },////cesar
+  synergyDesc:"+185 if Caesar, Monet or Vergo stands in the gas with you" },
 
   { id:"cb_navy_fist",    type:"powerup", rarity:"rare",      category:"crew_buff",
     image:cb_navy_fist,           name:"Navy Fist of Justice",
