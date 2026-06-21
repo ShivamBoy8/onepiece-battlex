@@ -2,7 +2,7 @@
 
 A One Piece themed card-drafting battle game built with React. Draft characters and power cards across 5 rounds, build synergies, and outscore the computer to claim the seas.
 
-**[Play it live →] **
+**[Play it live → https://onepiece-battlex.vercel.app/ ] **
 
 ---
 
