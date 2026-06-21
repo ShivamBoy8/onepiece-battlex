@@ -212,7 +212,7 @@ export default function Home() {
         /* ── scroll hint ── */
         .scroll-hint {
   position: absolute;
-  bottom: 32px;
+  bottom: 12px;          /* moved closer to actual bottom edge */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -221,7 +221,8 @@ export default function Home() {
   gap: 6px;
   opacity: 0.35;
   animation: bob 2s ease-in-out infinite;
-  z-index: 0; 
+  z-index: 0;
+  pointer-events: none;  /* ADD THIS — critical fix */
 }
         @keyframes bob {
           0%, 100% { transform: translateX(-50%) translateY(0); }
