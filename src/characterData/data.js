@@ -89,7 +89,13 @@ import pm_soul from "../assets/characters/pm_soul.webp";
 import pm_darkness from "../assets/characters/pm_darkness.webp";
 import pm_tarot from "../assets/characters/pm_tarot.webp";
 import pm_age from "../assets/characters/pm_age.webp";
-
+import frankyhover from "../assets/hoverimage/frankyhover.webp";
+import darkhover from "../assets/hoverimage/darkhover.webp";
+import roomhover from "../assets/hoverimage/roomhover.webp";
+import sadhover from "../assets/hoverimage/sadhover.webp";
+import soulhover from "../assets/hoverimage/soulhover.webp";
+import yonkohover from "../assets/hoverimage/yonkohover.webp";
+import brookhover from "../assets/hoverimage/brookhover.webp";
 
 const CHARACTERS = [
 
@@ -416,7 +422,7 @@ const POWER_CARDS = [
 
  // ── RAW POWER ───────────────────────────────────────────────
    { id:"rp_cola", type:"powerup", rarity:"special", category:"raw_power",
-  image:frankycola, name:"Franky's Cola Supply",
+  image:frankycola, name:"Franky's Cola Supply", hoverimage:frankyhover,
   desc:"SUPER! Three fresh cans slam into Franky's tank — Radical Beam locks on and vaporizes the weakest card in the enemy crew. Cola in, carnage out.",
   flatBonus:120, totalPower:120,
   synergyWith:["franky"], synergyBonus:110,
@@ -492,7 +498,7 @@ const POWER_CARDS = [
 
 
  { id:"cs_yonko_pact", type:"powerup",rarity:"special", category:"char_synergy",
-  image:yonkoAlliancePact, name:"Yonko Alliance Pact",
+  image:yonkoAlliancePact, name:"Yonko Alliance Pact", hoverimage:yonkohover,
   desc:"Two emperors unite — the seas tremble. Grants +210 bonus and doubles your weakest Yonko's power.",
   flatBonus:100, totalPower:100,
   synergyWith:["kaido","bigmom","shanks","blackbeard","whitebeard"],
@@ -517,14 +523,14 @@ const POWER_CARDS = [
     synergyDesc:"+40 when Bonney is in your crew" },
 
   { id:"pm_darkness", type:"powerup", rarity:"special", category:"prob_manip",
-  image:pm_darkness, name:"Dark Gravity Pull",
+  image:pm_darkness, name:"Dark Gravity Pull", hoverimage:darkhover,
   desc:"Darkness nullifies everything — no Devil Fruit, no Haki, no escape. Yami Yami no Mi swallows the enemy whole and drains 15% of their total score into the void.",
   flatBonus:170, totalPower:170,
   synergyWith:["blackbeard"], synergyBonus:195,
   synergyDesc:"+195 when Blackbeard commands the darkness — zero mercy, zero light" },
 
   { id:"pm_soul", type:"powerup", rarity:"special", category:"prob_manip",
-  image:pm_soul, name:"Soul Pocus",
+  image:pm_soul, name:"Soul Pocus", hoverimage:soulhover,
   desc:"Give me your lifespan! Big Mom's invisible hand reaches into the enemy soul — their score bleeds -2% every 2 seconds until the seas go quiet.",
   flatBonus:110, totalPower:110,
   synergyWith:["bigmom"], synergyBonus:130,
@@ -555,7 +561,7 @@ const POWER_CARDS = [
     synergyDesc:"+35 when Nami commands Zeus" },//reduces the power of next enemy card by 10%
 
   { id:"pm_ope", type:"powerup", rarity:"special", category:"prob_manip",
-  image:pm_ope, name:"Ope Ope ROOM",
+  image:pm_ope, name:"Ope Ope ROOM", hoverimage:roomhover,
   desc:"ROOM! A giant sphere of white light engulfs the battlefield. Inside Law's ROOM, nothing stays where it was — your weakest card is surgically swapped with a random card from the enemy crew.",
   flatBonus:210, totalPower:210,
   synergyWith:["law"], synergyBonus:55,
@@ -576,7 +582,7 @@ const POWER_CARDS = [
     synergyDesc:"+235 when Jinbe leads with water techniques" },
 
    { id:"cb_yomi", type:"powerup", rarity:"special", category:"crew_buff",
-  image:cb_yomi, name:"Soul King Concert",
+  image:cb_yomi, name:"Soul King Concert", hoverimage:brookhover,
   desc:"Yohohoho... shall I play you a song? Brook's Soul King melody floods the battlefield — every enemy freezes mid-step, their next pick turn stolen by the haunting refrain.",
   flatBonus:160, totalPower:160,
   synergyWith:["brook"], synergyBonus:120,
@@ -592,7 +598,7 @@ const POWER_CARDS = [
 
 
   { id:"cb_punk_hazard", type:"powerup", rarity:"special", category:"crew_buff",
-  image:cb_punk_hazard, name:"SAD Gas Cloud",
+  image:cb_punk_hazard, name:"SAD Gas Cloud", hoverimage:sadhover,
   desc:"Caesar Clown unleashes his deadly SAD compound — drains 5% enemy score per card they hold. The more they've built, the harder they fall.",
   flatBonus:152, totalPower:152,
   synergyWith:["caesar","monet","vergo"], synergyBonus:185,
